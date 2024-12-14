@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     'fc:frame:image': `${process.env.NEXT_PUBLIC_BASE_URL}/api/og/search`,
     'fc:frame:input:text': 'Enter NFT contract address',
     'fc:frame:button:1': 'Search NFTs',
-    'fc:frame:post_url': `${process.env.NEXT_PUBLIC_BASE_URL}/frames/audio`,
+    'fc:frame:post_url': `${process.env.NEXT_PUBLIC_BASE_URL}/api/frames/audio`,
   },
 };
 
