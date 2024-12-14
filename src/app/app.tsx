@@ -5,7 +5,11 @@ import sdk, { FrameContext } from '@farcaster/frame-sdk';
 import { Button } from '@/components/ui/Button';
 import Image from 'next/image';
 
-export default function App() {
+interface AppProps {
+  title?: string;
+}
+
+export default function App({ title }: AppProps) {
   const [isSDKLoaded, setIsSDKLoaded] = useState(false);
   const [context, setContext] = useState<FrameContext>();
   const [searchQuery, setSearchQuery] = useState('');
