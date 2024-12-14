@@ -1,32 +1,32 @@
 import { ButtonHTMLAttributes, forwardRef } from 'react';
 import { cn } from '@/lib/utils';
 
-export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  isLoading?: boolean;
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'default' | 'outline';
+  isLoading?: boolean;
 }
 
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, children, disabled, isLoading, variant = 'default', ...props }, ref) => {
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, variant = 'default', isLoading, children, ...props }, ref) => {
     return (
       <button
         className={cn(
-          'inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors',
-          'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
-          'disabled:pointer-events-none disabled:opacity-50',
-          variant === 'default' ? 'bg-black text-white hover:bg-gray-800' : '',
-          variant === 'outline' ? 'border border-gray-300 bg-transparent hover:bg-gray-100' : '',
+          'px-4 py-2 rounded-lg font-medium transition-colors',
+          variant === 'default' && 'bg-blue-500 text-white hover:bg-blue-600',
+          variant === 'outline' && 'border-2 border-gray-200 hover:bg-gray-50',
+          isLoading && 'opacity-50 cursor-not-allowed',
           className
         )}
-        disabled={disabled || isLoading}
+        disabled={isLoading}
         ref={ref}
         {...props}
       >
-        {isLoading ? (
-          <div className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-gray-300 border-t-white" />
-        ) : null}
-        {children}
+        {isLoading ? 'Loading...' : children}
       </button>
     );
   }
 );
+
+Button.displayName = 'Button';
+
+export { Button };
