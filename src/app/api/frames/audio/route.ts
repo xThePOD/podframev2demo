@@ -1,5 +1,5 @@
 import { NextRequest } from 'next/server';
-import { searchAudioNFTs } from '../../../../lib/nftSearch';
+import { searchAudioNFTs } from '@/lib/nftSearch';
 
 // Store NFT state in memory (in production, use a proper database)
 const STATE: {
