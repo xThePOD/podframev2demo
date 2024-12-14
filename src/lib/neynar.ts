@@ -1,5 +1,15 @@
 const apiKey = process.env.NEYNAR_API_KEY || "";
 
+interface SignerEvent {
+  signerEventBody: {
+    key: string;
+  };
+}
+
+interface NeynarResponse {
+  events: SignerEvent[];
+}
+
 export async function isSignerValid({
   fid,
   signerPublicKey,
@@ -21,14 +31,12 @@ export async function isSignerValid({
     throw new Error(await response.text());
   }
 
-  const responseJson = await response.json();
+  const responseJson = await response.json() as NeynarResponse;
   const signerPublicKeyLC = signerPublicKey.toLowerCase();
 
   const signerExists = responseJson.events.find(
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (event: any) =>
-      event.signerEventBody.key.toLowerCase() === signerPublicKeyLC
+    (event) => event.signerEventBody.key.toLowerCase() === signerPublicKeyLC
   );
 
-  return signerExists;
+  return !!signerExists;
 }

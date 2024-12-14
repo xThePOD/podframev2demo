@@ -4,7 +4,14 @@
     "next/core-web-vitals"
   ],
   "rules": {
+    "react/display-name": "off",
     "@typescript-eslint/no-explicit-any": "off",
-    "react/display-name": "off"
+    "@typescript-eslint/no-unused-vars": "warn",
+    "@typescript-eslint/ban-ts-comment": "off"
+  },
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "parserOptions": {
+    "project": "./tsconfig.json"
   }
 }
